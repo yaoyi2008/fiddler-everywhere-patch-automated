@@ -11,9 +11,14 @@ on:
         options:
           - Windows (x86_64)
           - Linux (x86_64)
+      patch-server-port:
+        description: 'Patch server port (useful for resolving port conflicts)"'
+        required: true
+        default: '5678'
 
 env:
   OS_ARCH: ${{ github.event.inputs.os-and-arch }}
+  PATCH_SERVER_PORT: ${{ github.event.inputs.patch-server-port }}
 
 jobs:
 
@@ -438,6 +443,19 @@ jobs:
             Write-Host "Source Server Folder not found"
           }
         shell: pwsh
+
+      - name: Set patch server port (in main.js of server)
+        run: |
+          $source_index = "msojocs-patch/server/index.js"
+          $index_content = Get-Content -Path $source_index -Raw
+
+          if (Test-Path $source_index) {
+            $index_content = $index_content -replace 'const port = \d+;', "const port = $env:PATCH_SERVER_PORT;"
+            Set-Content -Path $source_index -Value $index_content
+            Write-Host "Server port set to $env:PATCH_SERVER_PORT"
+          } else {
+            Write-Host "index.js (from server) not found"
+          }
 
       - name: Patch main.js to main.original.js
         run: |

@@ -18,6 +18,7 @@ on:
 
 env:
   OS_ARCH: ${{ github.event.inputs.os-and-arch }}
+  PATCH_SERVER_PORT: ${{ github.event.inputs.patch-server-port }}
 
 jobs:
 

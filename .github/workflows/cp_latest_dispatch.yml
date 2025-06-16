@@ -39,6 +39,11 @@ on:
 env:
   OS_ARCH: ${{ github.event.inputs.os-and-arch }}
   PATCH_SERVER_PORT: ${{ github.event.inputs.patch-server-port }}
+  PATCH_USER_EMAIL: ${{ github.event.inputs.patch-user-email }}
+  PATCH_USER_FNAME: ${{ github.event.inputs.patch-user-firstName }}
+  PATCH_USER_LNAME: ${{ github.event.inputs.patch-user-lastName }}
+  PATCH_USER_COUNTRYCODE: ${{ github.event.inputs.patch-user-country-code }}
+  PATCH_USER_PROVIDER: ${{ github.event.inputs.patch-user-provider }}
 
 jobs:
 

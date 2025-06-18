@@ -24,7 +24,7 @@ on:
         required: true
         default: 'Long'
       patch-user-lastName:
-        description: 'Fake registered first name (for fake FE account)'
+        description: 'Fake registered last name (for fake FE account)'
         required: true
         default: 'Wang'
       patch-user-country-code:

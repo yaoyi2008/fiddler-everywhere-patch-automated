@@ -63,11 +63,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Run the Powershell script
-        id: get_all_versions
-        working-directory: utils/fe-version-validator
-        run: ./GetAll-FEVersions.ps1
-
       - name: Validate Fiddler Version
         id: get_validity
         working-directory: utils/fe-version-validator

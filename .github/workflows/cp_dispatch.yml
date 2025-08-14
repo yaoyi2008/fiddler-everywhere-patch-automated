@@ -68,31 +68,11 @@ jobs:
         working-directory: utils/fe-version-validator
         run: ./GetAll-FEVersions.ps1
 
-      - name: Get Version Validity
+      - name: Validate Fiddler Version
         id: get_validity
+        working-directory: utils/fe-version-validator
         run: |
-          $versionsString = "${{ steps.get_all_versions.outputs.versions_string }}"
-          $patchingVersion = $env:VERSION_TO_PATCH
-          $isValid = 'false'
-
-          if ($versionsString) {
-            $allVersions = $versionsString -split ','
-
-            if ($allVersions -contains $patchingVersion) {
-              if ([version]$patchingVersion -ge [version]"5.9.0") {
-                $isValid = 'true'
-                Write-Host "✅ Version $patchingVersion is valid and compatible."
-              } else {
-                Write-Host "❌ Version is not compatible (older than 5.9.0)."
-              }
-            } else {
-              Write-Host "❌ Version $patchingVersion not found in the release list."
-            }
-          } else {
-            Write-Host "❌ No versions were found by the scraper."
-          }
-
-          echo "is_valid=$isValid" >> $env:GITHUB_OUTPUT
+          ./Validate-FEVersion.ps1 -VersionToPatch $env:VERSION_TO_PATCH
 
   init_os_arch:
     runs-on: ubuntu-latest

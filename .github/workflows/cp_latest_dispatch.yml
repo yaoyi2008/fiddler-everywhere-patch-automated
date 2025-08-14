@@ -255,7 +255,6 @@ jobs:
             Write-Host "SCRAPED_VERSION is empty or not set"
             exit 1
           }
-        shell: pwsh
 
       - name: Extract exe 
         run: 7z x "FiddlerEverywhereSetup.exe" -ofe_extracted
@@ -294,7 +293,6 @@ jobs:
             Write-Host "SCRAPED_VERSION is empty or not set"
             exit 1
           }
-        shell: pwsh
 
       - name: Extract AppImage 
         run: |
@@ -355,7 +353,6 @@ jobs:
           cp -R /Volumes/FiddlerEverywhere/* ./fe_app/
 
       - name: List fe_app
-        shell: pwsh
         run: Get-ChildItem -Recurse
         
       - name: Upload Fiddler Everywhere Extracted folder as an artifact

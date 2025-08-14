@@ -154,14 +154,18 @@ jobs:
       - name: Set Yui name 
         run: echo "YUI_NAME=yui" >> $env:GITHUB_ENV
         
-      - name: Set Yui fiddler name (>= 5.17.0)
-        if: env.IS_COMPATIBLE_CONT == 'true'
+      - name: Set Yui fiddler name
         run: |
           echo "Yui_FIDDLER_NAME=fiddler.$env:LIBRARY_EXTENSION" >> $env:GITHUB_ENV
           echo "Yui_FIDDLER_NAME_NO_EXTENSION=fiddler" >> $env:GITHUB_ENV
 
-      - name: Set Yui fiddler name (< 5.17.0 or on linux)
-        if: env.IS_COMPATIBLE_CONT == 'false' || env.OS_ARCH == 'Linux (x86_64)'
+      - name: Set Yui fiddler name (on < 5.17.0)
+        if: env.IS_COMPATIBLE_CONT == 'true' 
+        run: |
+          echo "Yui_FIDDLER_NAME=libfiddler.$env:LIBRARY_EXTENSION" >> $env:GITHUB_ENV
+
+      - name: Set Yui fiddler name (on linux)
+        if: env.OS_ARCH == 'Linux (x86_64)'
         run: |
           echo "Yui_FIDDLER_NAME=libfiddler.$env:LIBRARY_EXTENSION" >> $env:GITHUB_ENV
           echo "Yui_FIDDLER_NAME_NO_EXTENSION=libfiddler" >> $env:GITHUB_ENV

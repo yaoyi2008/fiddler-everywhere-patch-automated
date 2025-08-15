@@ -29,6 +29,9 @@
 > [!IMPORTANT]
 > Linux 自动补丁现已支持！
 
+> [!WARNING]
+> 新补丁需要向前端（FE）应用目录内写入文件，因此您需要在 Linux 系统中授予相应的写入权限。更多详情请参阅议题 #27。如果您有任何关于自动化该流程的建议，也欢迎随时提出。
+
 > [!IMPORTANT]
 > ### 更新通知：支持同步 Fork 与上游仓库：[阅读更多](#scheduled-syncing-forks-with-upstream-repo)
 

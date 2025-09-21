@@ -360,7 +360,15 @@ jobs:
 
       - name: Extract AppImage 
         run: |
-          hdiutil attach FiddlerEverywhere.dmg
+          # Mount the DMG and get the actual mount point
+          $mountResult = hdiutil attach FiddlerEverywhere.dmg | Select-String '/Volumes/.*' | ForEach-Object { $_.ToString().Trim() }
+          $mountPoint = $mountResult -replace '.*(/Volumes/[^ ]+).*', '$1'
+          
+          if (-not (Test-Path $mountPoint)) {
+            Write-Host "Mount point $mountPoint not found!"
+            exit 1
+          }
+          
           mkdir -p fe_app
           cp -R -P /Volumes/FiddlerEverywhere/* ./fe_app/
 

@@ -96,7 +96,7 @@ jobs:
           
           "library_extension=$extension" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
 
-      - name: Set Library Extension (dll / so / dylib)
+      - name: Set Arch
         id: set_arch
         run: |
           $arch = 'not-selected'
@@ -324,9 +324,10 @@ jobs:
     runs-on: [self-hosted, macos]
     needs: 
       - validate-version
+      - init_os_arch
 
     env: 
-      ARCH_CODE: ${{ github.event.inputs.arch_code }}
+      ARCH_CODE: ${{ needs.init_os_arch.outputs.arch_code }}
 
     steps:
       - name: Build URL & Download

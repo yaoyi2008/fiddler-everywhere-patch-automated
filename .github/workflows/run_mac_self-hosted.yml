@@ -6,7 +6,7 @@ on:
       version_to_patch:
         description: 'The Version You Want to Patch'
         required: true
-        default: '7.0.0'
+        default: '7.3.0'
       os-and-arch:
         description: 'Operating System And Architecture'
         required: true
@@ -59,7 +59,7 @@ env:
 jobs:
 
   validate-version:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, macos]
     outputs:
       is_valid: ${{ steps.get_validity.outputs.is_valid }}
       
@@ -73,7 +73,7 @@ jobs:
           ./Validate-FEVersion.ps1 -VersionToPatch $env:VERSION_TO_PATCH
 
   init_os_arch:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, macos]
     outputs:
       library_extension:  ${{ steps.set_library_extension.outputs.library_extension }}
       arch_code:  ${{ steps.set_arch.outputs.arch_code }}

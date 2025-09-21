@@ -351,7 +351,7 @@ jobs:
           
             Write-Host "Download URL: $downloadUrl"
 
-            Invoke-WebRequest -Uri $downloadUrl -OutFile "FiddlerEverywhereSetup.dmg"
+            Invoke-WebRequest -Uri $downloadUrl -OutFile "FiddlerEverywhere.dmg"
             
           } else {
             Write-Host "VERSION_TO_PATCH is empty or not set"

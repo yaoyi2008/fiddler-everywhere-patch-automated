@@ -362,7 +362,7 @@ jobs:
         run: |
           hdiutil attach FiddlerEverywhere.dmg
           mkdir -p fe_app
-          cp -R /Volumes/FiddlerEverywhere/* ./fe_app/
+          cp -R -P /Volumes/FiddlerEverywhere/* ./fe_app/
 
       - name: List fe_app
         run: Get-ChildItem -Recurse

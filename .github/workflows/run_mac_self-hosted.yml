@@ -59,7 +59,7 @@ env:
 jobs:
 
   validate-version:
-    runs-on: [self-hosted, macos]
+    runs-on: ubuntu-latest
     outputs:
       is_valid: ${{ steps.get_validity.outputs.is_valid }}
       

@@ -343,7 +343,7 @@ jobs:
             } elseif ($env:ARCH_CODE -eq "arm64") {
               $downloadUrl = "https://downloads.getfiddler.com/mac-arm64/Fiddler%20Everywhere%20$patchingVersion.dmg"
             } elseif ($env:ARCH_CODE -eq "arm64e") {
-              //Don't know
+              # Don't know
             } else {
               throw "Unsupported OS architecture: $env:ARCH_CODE"
             }
